@@ -1,0 +1,123 @@
+<style>
+
+    input[type=text], input[type=password] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+  
+    /* button {
+      background-color: #bfb4db;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 50%;
+    } */
+  
+    button:hover {
+      opacity: 0.8;
+    }
+  
+    .container {
+      padding: 10px;
+    }
+  
+    /* Style the form - display items horizontally */
+    .form-inline {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    }
+
+    /* Add some margins for each label */
+    .form-inline label {
+    margin: 5px 10px 5px 0;
+    }
+
+    /* Style the input fields */
+    .form-inline input {
+    vertical-align: middle;
+    margin: 5px 10px 5px 0;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    }
+
+    /* Style the submit button */
+    .form-inline button {
+    padding: 10px 20px;
+    background-color: #bfb4db;
+    border: 1px solid #ddd;
+    color: white;
+    margin-left: 20px;
+    }
+
+    .form-inline button:hover {
+        background-color: #bfb4db;
+    }
+
+    /* Add responsiveness - display the form controls vertically instead of horizontally on screens that are less than 800px wide */
+    @media (max-width: 800px) {
+    .form-inline input {
+        margin: 10px 0;
+    }
+
+    .form-inline {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    }
+  </style>
+  
+  <div class="new">
+  
+    <div class="forms">
+        <form [formGroup]="searchForm" (ngSubmit)="searchAllMachines()" class="form-inline" action="/action_page.php">
+            <label for="machineName">Machine name:</label>
+            <input [formControlName]="'machineName'" type="machineName" id="machineName" placeholder="Enter machine name" name="machineName">
+            <label for="from">From date:</label>
+            <input [formControlName]="'createdAfter'" type="date" id="from" name="from">
+            <label for="to">To date:</label>
+            <input [formControlName]="'createdBefore'" type="date" id="to" name="to">
+            <label for="status">Status:</label>
+            
+            <input [formControlName]="'STOPPED'" type="checkbox" value="STOPPED"/>
+            <label for="STOPPED"> STOPPED </label>
+            
+            <input [formControlName]="'RUNNING'" type="checkbox" value="RUNNING"/>
+            <label for="RUNNING"> RUNNING </label>
+
+            <button type="submit">Submit</button>
+          </form>
+    </div>
+    <div class="table">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Machine name</th>
+            <th scope="col">Status</th>
+            <th scope="col">Active</th>
+            <th scope="col">Created at</th>
+            <th scope="col">Created by</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let machine of this.machines; let i = index">
+            <th scope="row">{{ machine.id }}</th>
+            <td>{{ machine.machineName }}</td>
+            <td>{{ machine.status }}</td>
+            <td>{{ machine.active }}</td>
+            <td>{{ machine.createdAt }}</td>
+            <td >{{ machine.createdBy.username }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+  </div>

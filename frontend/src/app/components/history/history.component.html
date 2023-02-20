@@ -1,0 +1,102 @@
+<style>
+
+    input[type=text], input[type=password] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+  
+    /* button {
+      background-color: #bfb4db;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 50%;
+    } */
+  
+    button:hover {
+      opacity: 0.8;
+    }
+  
+    .container {
+      padding: 10px;
+    }
+  
+    /* Style the form - display items horizontally */
+    .form-inline {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    }
+
+    /* Add some margins for each label */
+    .form-inline label {
+    margin: 5px 10px 5px 0;
+    }
+
+    /* Style the input fields */
+    .form-inline input {
+    vertical-align: middle;
+    margin: 5px 10px 5px 0;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    }
+
+    /* Style the submit button */
+    .form-inline button {
+    padding: 10px 20px;
+    background-color: #bfb4db;
+    border: 1px solid #ddd;
+    color: white;
+    margin-left: 20px;
+    }
+
+    .form-inline button:hover {
+        background-color: #bfb4db;
+    }
+
+    /* Add responsiveness - display the form controls vertically instead of horizontally on screens that are less than 800px wide */
+    @media (max-width: 800px) {
+    .form-inline input {
+        margin: 10px 0;
+    }
+
+    .form-inline {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    }
+  </style>
+  
+  <div class="history">
+  
+    <div class="table">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Date</th>
+            <th scope="col">Machine Id</th>
+            <th scope="col">Operation</th>
+            <th scope="col">Message</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let error of this.errors; let i = index">
+            <th scope="row">{{ error.id }}</th>
+            <th >{{ error.date }}</th>
+            <th >{{ error.machineId }}</th>
+            <th >{{ error.operation }}</th>
+            <th >{{ error.message }}</th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+  </div>
